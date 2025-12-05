@@ -1,0 +1,433 @@
+:root {
+    --border-radius: 1.8vw;
+    --border-radius-circle: 50%;
+    --border-radius-pill: 60px;
+
+    /* Colors */
+    --color-bg-start: #e0e0fb;
+    --color-bg-end: #d0ccfb;
+    --color-main-bg: #dcdcfdcc;
+    /* Note: Ensure text has a sufficient contrast ratio (at least 4.5:1) against background colors/gradients. */
+    --color-card-bg: #e7e6ff;
+    --color-gradient-1: #e2bff8;
+    --color-gradient-2: #bcf0fd;
+    --color-text-link: #101516;
+    --color-black: #000000;
+
+    /* Shadows */
+    --shadow-main: 0px 3px 8px 0px #bfbfbf;
+    --shadow-card: 0px 0px 35px 15px #c1c1e9;
+
+    /* Spacing */
+    --spacing-xs: 0.5vw;
+    --spacing-s: 1vw;
+    --spacing-m: 1.5vw; /* 24px on 1600px viewport */
+    --spacing-l: 2rem; /* 32px on 16px base */
+    --spacing-xl: 2.5vw; /* 40px on 1600px viewport */
+    --page-padding-x: 13.5%;
+    --grid-gap: 2%;
+
+    /* Typography */
+    /* Using clamp for accessible fluid typography */
+    --font-size-base: clamp(16px, 1.2vw, 20px);
+    --font-size-title: clamp(20px, 1.5vw, 24px);
+    --font-size-subtitle: clamp(18px, 1.3vw, 22px);
+    --font-size-small: clamp(14px, 1.0vw, 18px);
+    --font-size-scale-down: 0.85;
+    --font-weight-medium: 500;
+    --font-weight-bold: bold;
+
+    /* Borders */
+    --border-thin: 1.6px solid var(--color-black);
+    --border-medium-width: 0.28vw;
+
+    /* Layout & Components */
+    --logo-height: 35px;
+    --btn-padding-y: 8px;
+    --btn-padding-x: 18px;
+    --card-width-half: 46%;
+    --card-width-quarter: 22.5%;
+    --overlay-image-width: 25vw;
+
+    /* Animation */
+    --animation-duration: 0.6s;
+    --animation-timing-function: ease-out;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('../img/body_bg.png'), linear-gradient(to bottom, var(--color-bg-start), var(--color-bg-end));
+    padding: 1% var(--page-padding-x);
+    margin: 0;
+    background-size: contain;
+    line-height: 1.5;
+    /* Improve text readability */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.main-container {
+    background: url('../img/main-content-bg.png'), var(--color-main-bg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: var(--border-radius);
+    padding: 1px 10px;
+    /* 0.5px can cause rendering issues, standardized to 1px */
+    box-shadow: var(--shadow-main);
+    font-size: var(--font-size-base);
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-m) var(--spacing-xl) 0 var(--spacing-xl);
+}
+
+.logo {
+    height: var(--logo-height);
+    margin-right: var(--spacing-s);
+}
+
+.app-name {
+    font-size: var(--font-size-title);
+    font-weight: var(--font-weight-bold);
+}
+
+.title {
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-title);
+}
+
+.solo-text {
+    text-align: center;
+    margin: var(--spacing-s) 0;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-subtitle);
+}
+
+.card {
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-card);
+    text-align: center;
+    align-content: center;
+}
+
+.list {
+    margin-top: var(--spacing-m);
+}
+
+.text {
+    text-align: left;
+    align-content: center;
+}
+
+.card-padding {
+    padding: var(--spacing-s);
+}
+
+/* Conteneur responsive */
+.head-section .figure {
+    position: relative;
+    width: 100%;
+    /* max-width: var(--max-width); */
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* L'image s'adapte */
+.figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.btn-circle {
+    border: var(--border-thin);
+    border-radius: var(--border-radius-pill);
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-medium);
+    text-align: center;
+    margin: auto;
+}
+
+/* Accessibility: Add a clear focus indicator for keyboard users */
+.btn-circle:focus-visible,
+.show-video-text:focus-visible {
+    outline: 3px solid var(--color-text-link);
+    outline-offset: 2px;
+}
+
+/* Overlay centré (horizontal + vertical) */
+.figure .overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    text-align: center;
+    pointer-events: none;
+}
+
+.figure .overlay img {
+    width: var(--overlay-image-width);
+    overflow: hidden;
+}
+
+.figure .overlay img.right {
+    margin-top: 5%;
+    width: 25vw;
+}
+
+/* Le texte lui-même (responsive font-size, lisibilité) */
+.figure .overlay .text {
+    pointer-events: auto;
+    max-width: 40%;
+    text-align: center;
+}
+
+.figure .overlay .text .subtitle {
+    font-size: calc(var(--font-size-base) * var(--font-size-scale-down));
+}
+
+.figure .overlay .text .show-video-text {
+    text-decoration: underline;
+    cursor: pointer;
+    color: var(--color-text-link);
+    font-size: calc(var(--font-size-base) * var(--font-size-scale-down));
+}
+
+.apps-section,
+.avantages-section {
+    display: flex;
+    justify-content: space-around;
+}
+
+.list .item {
+    display: flex;
+    margin: var(--spacing-xs) 0;
+}
+
+.avantages-section {
+    justify-content: center
+}
+
+.apps-section .card {
+    background-color: var(--color-card-bg);
+    width: var(--card-width-half);
+    display: flex;
+    justify-content: space-around;
+}
+
+.apps-section .card img {
+    width: 100%;
+}
+
+.apps-section .card .img {
+    width: 48%;
+    align-content: center;
+    display: flex;
+}
+
+.apps-section .card .list img {
+    width: var(--font-size-small);
+    margin-right: var(--spacing-xs);
+}
+
+.apps-section .card .left-card-img {
+    margin-right: var(--spacing-m);
+}
+
+.apps-section .card .right-card-text {
+    padding-left: var(--spacing-m);
+}
+
+.apps-section .card .right-card-img {
+    width: 60%;
+}
+
+.avantages-section .card {
+    margin: var(--grid-gap);
+    width: var(--card-width-quarter);
+    background: linear-gradient(145deg, var(--color-gradient-1), var(--color-gradient-2));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.avantages-section .card .text {
+    text-align: center;
+}
+
+.avantages-section .card .circle {
+    width: 6vw;
+    height: 6vw;
+    border: var(--border-medium-width) solid var(--color-card-bg);
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    border-radius: var(--border-radius-circle);
+}
+
+.avantages-section .card .circle img {
+    width: 50%;
+}
+
+.bottom-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom-section .card {
+    margin: var(--grid-gap);
+    background: linear-gradient(30deg, var(--color-gradient-2), var(--color-gradient-1), var(--color-gradient-2));
+}
+
+.store-buttons img {
+    height: clamp(35px, 2.8vw, 45px);
+    margin: var(--spacing-xs) 0.1vw;
+}
+
+/* --- Responsive Adjustments --- */
+
+/* Medium screens / Tablets */
+@media (max-width: 950px) {
+    body {
+        padding: 1% 8%;
+    }
+}
+
+/* Small screens / Mobile */
+@media (max-width: 850px) {
+
+    /* --- Head Section --- */
+    .head-section .figure img {
+        min-height: 350px;
+    }
+
+    body {
+        padding: 0.5% 3%;
+    }
+
+    /* Hide side images on mobile to focus on the text */
+    .figure .overlay img.left,
+    .figure .overlay img.right {
+        display: none;
+    }
+
+    .figure .overlay {
+        padding: 1rem;
+    }
+
+    .figure .overlay .text .title {
+        margin-bottom: var(--spacing-s);
+    }
+
+    /* Allow text to take up more space */
+    .figure .overlay .text {
+        max-width: 80%;
+    }
+
+    /* --- Apps Section --- */
+    .apps-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .apps-section .card {
+        width: 95%;
+        margin-bottom: var(--spacing-l);
+    }
+
+    .apps-section .card .img {
+        max-width: 140px;
+    }
+
+    /* --- Avantages Section --- */
+    .avantages-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .avantages-section .card {
+        width: 90%;
+        margin: var(--spacing-m) 0;
+    }
+
+    .avantages-section .card .circle {
+        width: 15vw;
+        height: 15vw;
+        min-width: 70px;
+        min-height: 70px;
+    }
+}
+
+/* Accessibility: Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* --- Animations --- */
+
+/* Define the keyframe for the fade-in-up animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply animations only if the user has not requested reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+
+    .apps-section .card,
+    .avantages-section .card,
+    .bottom-section .card {
+        /* Apply the animation */
+        animation: fadeInUp var(--animation-duration) var(--animation-timing-function);
+        /* Keep the final state of the animation and apply start state before it runs */
+        animation-fill-mode: backwards;
+    }
+
+    /* Stagger the animation for cards in the same section */
+    .apps-section .card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .avantages-section .card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .avantages-section .card:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    .avantages-section .card:nth-child(4) {
+        animation-delay: 0.6s;
+    }
+}
