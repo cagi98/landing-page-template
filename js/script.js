@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Fait défiler la page vers le bas au clic sur le bouton "Commencer"
+    // Scrolls the page down when the "Start" button is clicked
     const startButton = document.querySelector('.btn-start');
     if (startButton) {
         startButton.addEventListener('click', function() {

@@ -285,6 +285,10 @@ body {
     width: 50%;
 }
 
+.avantages-section .card .list .item {
+    flex-direction: column;
+}
+
 .bottom-section {
     display: flex;
     flex-direction: column;
